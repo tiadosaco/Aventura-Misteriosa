@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uma Aventura Misteriosa</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #071b16, #183b2b, #091510);
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.65);
+            max-width: 650px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #00a86b;
+        }
+
+        h1 {
+            color: #65e6a1;
+            font-size: 32px;
+        }
+
+        h2 {
+            color: #a8f0c6;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        button {
+            background-color: #16834e;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            margin: 10px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #28b76f;
+            transform: scale(1.05);
+        }
+
+        #resultado {
+            margin-top: 25px;
+            font-size: 19px;
+            color: #c2ffd9;
+        }
+
+        .emoji {
+            font-size: 55px;
+            margin: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🌲 Uma Aventura Misteriosa</h1>
+
+        <div class="emoji">🌳🌙✨</div>
+
+        <h2 id="titulo">O Segredo da Floresta</h2>
+
+        <p id="historia">
+            Você é um explorador que encontrou um mapa misterioso.
+            Ele mostra a localização de um tesouro escondido em uma
+            floresta desconhecida.
+
+            Ao chegar na floresta, você encontra dois caminhos.
+            Qual deles deseja seguir?
+        </p>
+
+        <div id="botoes">
+            <button onclick="escolher('esquerda')">
+                🌳 Caminho da esquerda
+            </button>
+
+            <button onclick="escolher('direita')">
+                🌫️ Caminho da direita
+            </button>
+        </div>
+
+        <div id="resultado"></div>
+
+    </div>
+
+    <script>
+
+        function escolher(opcao) {
+
+            const titulo = document.getElementById("titulo");
+            const historia = document.getElementById("historia");
+            const botoes = document.getElementById("botoes");
+            const resultado = document.getElementById("resultado");
+
+            resultado.innerHTML = "";
+
+            if (opcao === "esquerda") {
+
+                titulo.innerHTML = "🌳 A Árvore Misteriosa";
+
+                historia.innerHTML =
+                    "Você encontra uma árvore gigante com uma porta secreta. " +
+                    "Uma voz misteriosa faz uma pergunta: " +
+                    "O que é seu, mas as outras pessoas usam mais do que você?";
+
+                botoes.innerHTML = `
+                    <button onclick="escolher('resposta')">
+                        Responder: Meu nome
+                    </button>
+
+                    <button onclick="escolher('ignorar')">
+                        Ignorar e continuar
+                    </button>
+                `;
+
+            }
+
+            else if (opcao === "direita") {
+
+                titulo.innerHTML = "🕳️ A Caverna Escondida";
+
+                historia.innerHTML =
+                    "Você encontra uma caverna com uma luz azul brilhando. " +
+                    "No fundo existe um baú misterioso. " +
+                    "O que você vai fazer?";
+
+                botoes.innerHTML = `
+                    <button onclick="escolher('bau')">
+                        🔑 Abrir o baú
+                    </button>
+
+                    <button onclick="escolher('sair')">
+                        🚶 Sair da caverna
+                    </button>
+                `;
+
+            }
+
+            else if (opcao === "resposta") {
+
+                titulo.innerHTML = "✨ A Passagem Secreta";
+
+                historia.innerHTML =
+                    "Parabéns! A resposta estava correta. " +
+                    "A árvore abre uma passagem secreta que leva até um templo antigo. " +
+                    "Dentro dele existe um mapa do tesouro!";
+
+                botoes.innerHTML = `
+                    <button onclick="escolher('mapa')">
+                        🗺️ Seguir o mapa
+                    </button>
+
+                    <button onclick="escolher('voltar')">
+                        Voltar para a floresta
+                    </button>
+                `;
+
+            }
+
+            else if (opcao === "ignorar" || opcao === "sair") {
+
+                titulo.innerHTML = "🌊 O Rio Encantado";
+
+                historia.innerHTML =
+                    "Você chega a um rio misterioso e encontra uma ponte de madeira. " +
+                    "Do outro lado existe uma luz brilhante. " +
+                    "Você decide atravessar ou voltar para casa?";
+
+                botoes.innerHTML = `
+                    <button onclick="escolher('atravessar')">
+                        Atravessar a ponte
+                    </button>
+
+                    <button onclick="escolher('voltar')">
+                        Voltar para casa
+                    </button>
+                `;
+
+            }
+
+            else if (opcao === "bau") {
+
+                titulo.innerHTML = "🗝️ O Baú Misterioso";
+
+                historia.innerHTML =
+                    "Dentro do baú você encontra uma chave dourada. " +
+                    "Ela abre uma passagem secreta que leva até um tesouro escondido!";
+
+                botoes.innerHTML = `
+                    <button onclick="escolher('mapa')">
+                        Entrar na passagem
+                    </button>
+
+                    <button onclick="escolher('voltar')">
+                        Deixar o tesouro e voltar
+                    </button>
+                `;
+
+            }
+
+            else if (opcao === "mapa" || opcao === "atravessar") {
+
+                titulo.innerHTML = "🏆 Final: O Grande Segredo!";
+
+                historia.innerHTML =
+                    "Você encontrou uma sala secreta cheia de tesouros! " +
+                    "Também descobriu que a floresta escondia uma antiga civilização. " +
+                    "Sua coragem e inteligência fizeram de você um grande explorador!";
+
+                botoes.innerHTML = `
+                    <button onclick="reiniciar()">
+                        🔄 Jogar novamente
+                    </button>
+                `;
+
+            }
+
+            else if (opcao === "voltar") {
+
+                titulo.innerHTML = "🌅 Final: O Retorno";
+
+                historia.innerHTML =
+                    "Você decidiu voltar para casa em segurança. " +
+                    "Mesmo sem descobrir todos os segredos da floresta, " +
+                    "aprendeu que toda aventura exige coragem e boas decisões!";
+
+                botoes.innerHTML = `
+                    <button onclick="reiniciar()">
+                        🔄 Jogar novamente
+                    </button>
+                `;
+
+            }
+
+        }
+
+        function reiniciar() {
+
+            document.getElementById("titulo").innerHTML =
+                "O Segredo da Floresta";
+
+            document.getElementById("historia").innerHTML =
+                "Você é um explorador que encontrou um mapa misterioso. " +
+                "Ele mostra a localização de um tesouro escondido em uma " +
+                "floresta desconhecida. Ao chegar na floresta, você encontra " +
+                "dois caminhos. Qual deles deseja seguir?";
+
+            document.getElementById("botoes").innerHTML = `
+                <button onclick="escolher('esquerda')">
+                    🌳 Caminho da esquerda
+                </button>
+
+                <button onclick="escolher('direita')">
+                    🌫️ Caminho da direita
+                </button>
+            `;
+
+            document.getElementById("resultado").innerHTML = "";
+
+        }
+
+    </script>
+
+</body>
+</html>
